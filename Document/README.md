@@ -422,10 +422,10 @@ In this phase, the complete RAG-based workflow is implemented and tested inside 
 
 ---
 
-19. Export Results to CSV
-    - Convert the validated interview questions and answers into a CSV file.
+19. Export Results to text
+    - Convert the validated interview questions and answers into a txt file.
     
-    - Final CSV Structure
+    - Final txt Structure
         ```text
         Topic,Difficulty,Question,Answer
         Machine Learning,Easy,What is overfitting?,...

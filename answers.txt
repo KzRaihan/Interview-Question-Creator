@@ -1,0 +1,74 @@
+Question 1: 1. How does the SDG plan’s emphasis on equitable resource distribution address the issue of food availability mentioned in the passage?  
+2. In what ways does the passage link the progress in reducing extreme poverty to the broader goal of ending hunger and malnutrition?  
+3. Explain how the SDG targets for clean water and sanitation interact with the projected increase in water scarcity by 2050.  
+4. Discuss the role of technological innovation, as described in the passage, in achieving both economic growth and environmental sustainability.  
+5. Analyze how the SDG framework seeks to balance the need for industrialization with the protection of terrestrial ecosystems.  
+
+6. Imagine you are given a dataset of countries with their poverty rates and populations. Write a Python function that returns the top five countries that would benefit most from the SDG “End extreme poverty” goal, defined as the highest product of poverty_rate × population.  
+7. Suppose you need to extract the number of mega‑cities in 2014 from a raw text file containing the SDG passage. Outline a regular‑expression approach to reliably capture this figure.  
+8. You are tasked with creating a dashboard that visualizes the projected percentage of people affected by water shortages in 2050. Describe how you would compute this percentage using the data provided in the passage.  
+
+9. Given that 1.7 billion people gained electricity between 1990 and 2010, estimate the percentage of the world population that still lacks electricity as of 2010, assuming a 7.8 billion global population.  
+10. Using the 25 % figure for water shortages by 2050, estimate the number of people affected in billions.
+Answer 1: 1. The SDG plan stresses equitable resource distribution, noting that while enough food exists, it is not shared; this focus aims to ensure that food availability reaches all communities.  
+
+2. The passage shows that halving extreme poverty has already cut hunger by almost half, implying that reducing poverty directly improves food security and supports the goal of ending hunger and malnutrition.  
+
+3. SDG targets for clean water and sanitation call for shared water‑treatment technologies and protection of wetlands, directly countering the projected 25 % increase in water shortages by 2050.  
+
+4. Technological innovation—such as clean energy, energy‑efficient systems, and sustainable agriculture—drives job creation, economic growth, and environmental protection, aligning with SDG goals for decent work and climate action.  
+
+5. The SDG framework promotes industrialization through clean, renewable energy and efficient production while safeguarding ecosystems via sustainable consumption patterns, wetland protection, and responsible resource management.  
+
+6. ```python
+   def top_five(poverty_data):
+       # poverty_data: list of dicts with 'country', 'poverty_rate', 'population'
+       return sorted(poverty_data, key=lambda x: x['poverty_rate']*x['population'], reverse=True)[:5]
+   ```  
+
+7. Use a regex like `r"(\d+)\s+mega‑cities\s+in\s+2014"` to capture the number (28) from the passage.  
+
+8. Compute the percentage by taking the 25 % figure given for 2050 and applying it to the world population; e.g., 0.25 × 7.8 billion ≈ 1.95 billion people.  
+
+9. If 1.7 billion gained electricity, then 7.8 billion − 1.7 billion = 6.1 billion lack electricity, which is about 78 % of the 2010 population.  
+
+10. 25 % of 7.8 billion equals roughly 1.95 billion people affected by water shortages in 2050.
+--------------------------------------------------
+
+Question: 1. How does the SDG plan’s emphasis on equitable resource distribution address the issue of food availability mentioned in the passage?  
+2. In what ways does the passage link the progress in reducing extreme poverty to the broader goal of ending hunger and malnutrition?  
+3. Explain how the SDG targets for clean water and sanitation interact with the projected increase in water scarcity by 2050.  
+4. Discuss the role of technological innovation, as described in the passage, in achieving both economic growth and environmental sustainability.  
+5. Analyze how the SDG framework seeks to balance the need for industrialization with the protection of terrestrial ecosystems.  
+
+6. Imagine you are given a dataset of countries with their poverty rates and populations. Write a Python function that returns the top five countries that would benefit most from the SDG “End extreme poverty” goal, defined as the highest product of poverty_rate × population.  
+7. Suppose you need to extract the number of mega‑cities in 2014 from a raw text file containing the SDG passage. Outline a regular‑expression approach to reliably capture this figure.  
+8. You are tasked with creating a dashboard that visualizes the projected percentage of people affected by water shortages in 2050. Describe how you would compute this percentage using the data provided in the passage.  
+
+9. Given that 1.7 billion people gained electricity between 1990 and 2010, estimate the percentage of the world population that still lacks electricity as of 2010, assuming a 7.8 billion global population.  
+10. Using the 25 % figure for water shortages by 2050, estimate the number of people affected in billions.\nAnswer: 1. The SDG plan stresses equitable resource distribution, directly addressing food availability by ensuring that the existing global food supply is shared more fairly rather than remaining unevenly distributed.  
+
+2. The passage links poverty reduction to ending hunger by noting that halving extreme poverty has already cut hunger by almost half, implying that lifting people out of poverty improves their ability to access sufficient, nutritious food.  
+
+3. SDG targets for clean water and sanitation aim to guarantee access for all, which counteracts the projected 25 % water‑scarcity by 2050 by expanding supply, improving efficiency, and deploying shared water‑treatment technologies.  
+
+4. Technological innovation—such as solar and wind energy, energy‑efficient practices, and water‑treatment sharing—creates new jobs and economic growth while simultaneously reducing emissions and conserving resources, thereby aligning economic and environmental goals.  
+
+5. The SDG framework promotes sustainable consumption and production patterns, encouraging resource‑efficient industrialization and better waste management to protect terrestrial ecosystems while still allowing economic development.  
+
+6. ```python
+def top_five_poverty_beneficiaries(data):
+    # data: list of dicts with 'country', 'poverty_rate', 'population'
+    return sorted(data, key=lambda x: x['poverty_rate']*x['population'], reverse=True)[:5]
+```  
+
+7. A reliable regex could be:  
+   - Search for the phrase “In 2014, there were” followed by a number and “mega‑cities”.  
+   - Pattern: `r'In 2014, there were (\d+) mega‑cities'`.  
+   - Extract group 1 for the figure.  
+
+8. To visualize the projected percentage, take the 25 % figure from the passage, multiply it by the current world population (e.g., 7.8 billion), and display the resulting value (≈1.95 billion people) as a percentage of the total population.  
+
+9. 7.8 billion – 1.7 billion = 6.1 billion lacking electricity. 6.1 billion / 7.8 billion ≈ 0.78, so about **78 %** of the world population still lacks electricity as of 2010.  
+
+10. 25 % of 7.8 billion equals 0.25 × 7.8 ≈ 1.95 billion, so roughly **2 billion** people would be affected by water shortages in 2050.\n--------------------------------------------------\n\n
