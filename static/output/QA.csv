@@ -1,0 +1,62 @@
+Question,Answer
+"You are tasked with deploying a brinjal leaf disease classifier on a low‑power mobile device. Based on the resume, which of MobileNetV2, DenseNet121, or EfficientNetB would you choose, and why? Discuss trade‑offs in computational efficiency and accuracy.","For a low‑power mobile deployment, **MobileNetV2** is the preferred choice.  
+- **Computational efficiency**: MobileNetV2 uses depth‑wise separable convolutions, resulting in far fewer parameters and lower FLOPs than DenseNet121 or EfficientNetB, which is critical for battery‑constrained devices.  
+- **Accuracy**: In the project, MobileNetV2 achieved near‑state‑of‑the‑art accuracy (up to 98.5 %) while still being lightweight, whereas DenseNet121 and EfficientNetB, though potentially marginally more accurate, would impose higher memory and compute demands that are unsuitable for real‑time mobile inference.  
+
+Thus, MobileNetV2 offers the best trade‑off between speed, memory usage, and classification performance for a mobile brinjal leaf disease classifier."
+"Describe a scenario where you would need to optimize a deep learning model for real‑time inference on a mobile device. Which techniques from the resume could you apply, and why?","A farmer could use a smartphone app to scan an eggplant leaf and instantly receive a diagnosis of one of the seven disease categories.  
+To make the model run in real time on the phone, you would:
+
+- **Choose a lightweight architecture** such as MobileNetV2 or EfficientNetB, which were already used in the thesis and are designed for low‑compute devices.  
+- **Apply the lightweight deep‑learning approach** that was investigated for mobile‑based agricultural applications, ensuring the network size and inference time are within the limits of a typical mobile CPU or GPU.  
+
+These techniques keep the model accurate (up to 98.5 % on the 17,500‑image dataset) while meeting the latency and memory constraints of real‑time mobile inference."
+"The resume states that the classification accuracy reached up to 98.5% on 17,500+ images across 7 disease categories. What steps would you take to validate that this accuracy is not due to overfitting, and what metrics would you report?","The provided context does not contain information about validation procedures or additional metrics used for the brinjal leaf disease classification project, so it does not provide an answer to this question."
+"Considering the candidate's experience at FlyRank AI, what architectural components would you include to scale a machine learning pipeline from development to production, and how would you leverage Python, PyTorch, TensorFlow, and SQL in that architecture?","- **Data ingestion & storage**: Use SQL databases to store raw and processed data, enabling efficient querying and feature retrieval for training and inference.  
+- **Feature engineering & preprocessing**: Orchestrate pipelines in Python, leveraging libraries such as Pandas and NumPy, and store intermediate features in SQL for reproducibility.  
+- **Model training**: Train models in PyTorch or TensorFlow within Python scripts, taking advantage of GPU acceleration and modular code that can be version‑controlled.  
+- **Model registry & deployment**: Store trained checkpoints in a model registry (e.g., a dedicated SQL table or artifact store) and expose inference endpoints via Python‑based APIs (FastAPI/Flask) that load the PyTorch/TensorFlow models.  
+- **Monitoring & logging**: Collect performance metrics and logs in SQL or a time‑series database, and use Python to analyze drift or accuracy degradation, feeding back into the training loop."
+"Describe a concrete end‑to‑end AI application pipeline where you would use Python for data preprocessing, C++ for inference optimization, Java for building a web service, and SQL for data storage. Explain how these languages interact.","Python handles the data pipeline: it cleans, augments, and splits the raw images or text, then trains a deep‑learning model (e.g., MobileNetV2 or a transformer) and exports the trained weights to a portable format.  
+C++ takes the exported model and implements a highly‑optimized inference engine (using libraries such as TensorRT or ONNX Runtime) to run predictions on edge devices or in a low‑latency server.  
+Java builds a RESTful web service that receives user requests, forwards the input to the C++ inference module (via JNI or a lightweight gRPC call), and returns the results to the client.  
+SQL stores the raw data, intermediate features, and inference results in a relational database, enabling the Java service to query historical predictions and update the dataset for continuous learning.  
+
+The languages interact through clear interfaces: Python writes preprocessed data and model artifacts to the database and file system; C++ reads the model file, performs inference, and returns results to Java; Java orchestrates the workflow, persists outputs to SQL, and exposes the service to end users."
+"Given the candidate's experience with TensorFlow and PyTorch, compare their suitability for deploying transformer‑based NLP models in a microservice architecture. Consider aspects such as model export, inference speed, and ecosystem support.",The provided context does not contain enough information to compare TensorFlow and PyTorch for deploying transformer‑based NLP models in a microservice architecture.
+"What are the essential components of a production‑ready, API‑driven AI solution, and how would you implement monitoring, logging, and version control to ensure reliability and maintainability?","- **Core components of a production‑ready, API‑driven AI solution**  
+  • Data ingestion and preprocessing pipeline that feeds clean, labeled data into the model.  
+  • Model training, evaluation, and optimization workflow built with Python, PyTorch, or TensorFlow.  
+  • Inference service exposed through a REST or gRPC API, packaged in a container for consistent deployment.  
+  • Scalable AI pipeline that can handle real‑time or batch predictions for real‑world applications.  
+
+- **Monitoring, logging, and version control for reliability and maintainability**  
+  • **Monitoring**: instrument the API to capture latency, throughput, and error rates; aggregate these metrics to detect performance regressions.  
+  • **Logging**: use structured Python logging to record request details, prediction outputs, and any exceptions; store logs centrally for audit and debugging.  
+  • **Version control**: keep all code, model artifacts, and configuration files in a Git repository (e.g., GitHub); tag releases and use branches for experimentation, ensuring reproducible deployments.  
+  • Combine the above with automated CI/CD pipelines to test, build, and deploy new model versions, guaranteeing that each change is traceable and recoverable."
+"The brinjal dataset has 7 disease categories. Explain a strategy to handle class imbalance during training, including data augmentation, loss weighting, or sampling techniques, and how you would evaluate its impact.","- **Data augmentation**: Apply transformations (rotation, scaling, flipping, color jitter) more aggressively to images from minority disease classes so that each class contributes roughly the same number of training samples.  
+- **Loss weighting / class‑balanced loss**: Compute class weights inversely proportional to class frequencies and incorporate them into the cross‑entropy loss, or use focal loss to down‑weight well‑classified majority samples.  
+- **Sampling techniques**: Use oversampling of minority classes or undersampling of majority classes during mini‑batch construction, ensuring each batch contains a balanced mix of disease categories.  
+
+**Evaluation of impact**  
+- Measure per‑class precision, recall, and F1‑score on a held‑out validation set before and after applying the imbalance strategy.  
+- Compare macro‑averaged metrics and the overall accuracy; a significant improvement in minority‑class F1‑scores with only a modest change in overall accuracy indicates successful balancing.  
+- Inspect confusion matrices to confirm that misclassifications among minority classes have decreased."
+"Propose a project that combines computer vision and NLP, such as generating textual descriptions of plant diseases from images. Outline the data pipeline, model architecture (e.g., CNN + Transformer), and evaluation metrics.","**Project idea:** *Plant‑Disease Captioning* – generate natural‑language descriptions of plant leaf diseases from images.
+
+**Data pipeline**  
+- Collect a balanced set of leaf images (e.g., 17 500+ images from the brinjal dataset).  
+- Annotate each image with a short disease description (e.g., “yellow spots indicating early blight”).  
+- Split into training/validation/test sets, apply standard image augmentations, and tokenize the text.  
+
+**Model architecture**  
+- **CNN encoder**: use a lightweight backbone such as MobileNetV2 (or DenseNet121/EfficientNetB) to extract a global feature vector.  
+- **Transformer decoder**: feed the CNN features as the encoder output and generate the caption token by token, leveraging self‑attention and positional encodings.  
+- Train end‑to‑end with cross‑entropy loss on the caption tokens.  
+
+**Evaluation metrics**  
+- **Classification accuracy** of the disease label (as in the thesis, up to 98.5 %).  
+- **Caption quality**: BLEU, METEOR, and CIDEr scores against reference descriptions.  
+- **Human‑judgement**: optional qualitative assessment of fluency and correctness."
+Fine‑tuning a large language model for a domain‑specific task often requires significant compute. Describe a resource‑constrained approach to fine,The provided context does not contain information about resource‑constrained approaches to fine‑tuning large language models.
